@@ -6,14 +6,17 @@ import Sign from './pages/reg/Reg'
 import Search from './pages/search/Search'
 import Maps from './pages/map/Maps.js'
 import City from './pages/city/City'
-import Store from './store'
+import store from './store'
+import { Provider } from 'react-redux'
 
-console.log(Store.getState())
+
+
  
 
 export default class App extends Component {
     render() {
         return (
+            <Provider store={store}>
             <HashRouter>
                 <Switch>
                 <Route path='/' exact component={Nav}></Route>
@@ -25,6 +28,7 @@ export default class App extends Component {
                 <Route  component={Nav}></Route>
                 </Switch>
             </HashRouter>
+            </Provider>
         )
     }
 }

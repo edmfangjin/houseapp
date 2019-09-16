@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import{ Flex ,Carousel , WingBlank} from 'antd-mobile'
+import{ Flex ,Carousel , Toast} from 'antd-mobile'
+import { connect } from 'react-redux'
 
-export default class Home extends Component {
+ class Home extends Component {
     constructor(){
         super()
         this.state={
@@ -196,7 +197,7 @@ export default class Home extends Component {
                     <p>猜你喜欢</p>
                     
                     {this.state.houseList.map(obj=>
-                        <Flex style={{marginBottom:'10px'}}>
+                        <Flex style={{marginBottom:'10px'}} onClick={()=>{ Toast.offline('您浏览了' + obj.name + '房源');this.props.dispatch({type: 'addHistoryList',obj})}}>
                             <img alt={obj.name} src={obj.imgs} style={{width:'120px',height:'60xp'}}></img>
                             <div style={{flex:'1',paddingLeft:'10px'}}>
                                 <Flex justify="between"> <h3 style={{margin:'0'}}>{obj.name}</h3> <h3 style={{color:'red',margin:'0'}}>￥{obj.price}/平</h3></Flex>
@@ -232,3 +233,4 @@ export default class Home extends Component {
         });
     }
 }
+export default connect()(Home)
